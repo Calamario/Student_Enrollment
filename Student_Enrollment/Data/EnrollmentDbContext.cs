@@ -13,7 +13,7 @@ namespace Student_Enrollment.Data
         public DbSet<Student> Student { get; set; }
 
         public EnrollmentDbContext(DbContextOptions<EnrollmentDbContext> options) : base(options)
-        {
+        { 
             
         }
     }
