@@ -62,6 +62,7 @@ namespace Student_Enrollment.Controllers
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
             if (id.HasValue)
@@ -74,6 +75,14 @@ namespace Student_Enrollment.Controllers
             {
                 return NotFound();
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Student student)
+        {
+            _context.Student.Update(student);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
