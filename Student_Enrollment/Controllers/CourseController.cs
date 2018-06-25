@@ -57,5 +57,32 @@ namespace Student_Enrollment.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
+        {
+            if (id.HasValue)
+            {
+                Course course = await _context.Course.FirstOrDefaultAsync(a => a.ID == id);
+                return View(course);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Course course)
+        {
+            _context.Course.Update(course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+
+        }
     }
 }
