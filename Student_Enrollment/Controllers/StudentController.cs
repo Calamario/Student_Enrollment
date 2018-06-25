@@ -40,10 +40,17 @@ namespace Student_Enrollment.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public async Task<IActionResult> ViewAll()
+        public async Task<IActionResult> ViewAll(string searchString)
         {
-            var data = await _context.Student.Include(s => s.Course).ToListAsync();
-            return View(data);
+            var data = from s in _context.Student
+                       select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                data = data.Where(s => s.Name.Contains(searchString));
+            }
+
+            return View(await data.Include(s => s.Course).ToListAsync());
         }
 
         public async Task<IActionResult> Delete(int id)

@@ -3,6 +3,13 @@
 <body>
     <h2>Students</h2>
 
+    <form asp-controller="Student" asp-action="ViewAll">
+        <p>
+            Search: <input type="text" name="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+
     @foreach (var x in Model)
     {
         <h3>@x.Name</h3>
