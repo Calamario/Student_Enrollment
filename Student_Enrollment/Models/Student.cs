@@ -14,8 +14,10 @@ namespace Student_Enrollment.Models
         public string Name { get; set; }
 
         [Required]
-        [Display(Name ="Course")]
-        public Course ClassName { get; set; }
+        public Course Course { get; set; }
+
+        [Required]
+        public int CourseId { get; set; }
 
         [Required]
         public bool Passing { get; set; }

@@ -17,11 +17,14 @@ namespace Student_Enrollment.Models
         public string Instructor { get; set; }
 
         [Required]
-        [Display(Name ="Daytime Course")]
-        public bool dayTrack { get; set; }
+        [Display(Name ="Starting Date")]
+        [DataType(DataType.Date)]
+        public DateTime StartingDate { get; set; }
 
         [Required]
-        public List<Student> Cohort { get; set; }
+        [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
 
     }
 

@@ -1,0 +1,22 @@
+﻿@using Student_Enrollment.Models
+@model Student_Enrollment.Models.CourseDetailViewModel
+
+<body>
+    <h1>Details for @Model.Course.ClassName </h1>
+
+    <h3>Instructor: @Model.Course.Instructor</h3>
+    <h3>Starting on: @Model.Course.StartingDate</h3>
+    <h3>Ends on: @Model.Course.EndDate</h3>
+
+    <p><a asp-controller="Course" asp-action="Edit" asp-route-id="@Model.Course.ID">Edit Class</a></p>
+    <p><a asp-controller="Course" asp-action="Delete" asp-route-id="@Model.Course.ID">Delete Class</a></p>
+
+    <h2>Enrolled Students</h2>
+    @foreach (var x in @Model.Students)
+    {
+        <h3>@x.Name</h3>
+        <p><a asp-controller="Student" asp-action="Update" asp-route-id="@x.ID">Edit Student</a></p>
+        <p><a asp-controller="Student" asp-action="Delete" asp-route-id="@x.ID">Delete Student</a></p>
+        <hr />
+    }
+</body>

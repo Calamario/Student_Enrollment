@@ -1,0 +1,34 @@
+﻿@using Student_Enrollment.Models
+@model Student_Enrollment.Models.Student
+
+<body>
+    <h2>Please enter new student information</h2>
+
+    <form method="post" asp-controller="Student" form-action="Update">
+
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" />
+        <br />
+        <br />
+
+        <label asp-for="Course">Course</label>
+        @(Html.DropDownListFor(m => m.CourseId, new SelectList((IEnumerable<Course>)ViewData["Courses"],
+                                    "ID", "ClassName", "Instructor")))
+        <br />
+        <br />
+
+        <label asp-for="Passing">Passing</label>
+        <input asp-for="Passing" />
+        <br />
+        <br />
+
+        <label asp-for="HoursOfSleep">Hours of Sleep</label>
+        <input asp-for="HoursOfSleep" />
+        <br />
+        <br />
+
+
+        <button type="submit">Submit Changes for Student</button>
+
+    </form>
+</body>
