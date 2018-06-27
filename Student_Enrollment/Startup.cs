@@ -27,11 +27,11 @@ namespace Student_Enrollment
         {
             services.AddMvc();
 
-            services.AddDbContext<EnrollmentDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             //services.AddDbContext<EnrollmentDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<EnrollmentDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
 
         }
 
