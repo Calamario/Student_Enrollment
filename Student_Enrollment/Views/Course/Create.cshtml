@@ -1,0 +1,37 @@
+﻿@using Student_Enrollment.Models
+@model Student_Enrollment.Models.Course
+
+<head>
+    <link href="~/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h2>Please enter new course information</h2>
+
+    <form method="post" asp-controller="Course" form-action="Create">
+
+
+        <label asp-for="ClassName">Course: </label>
+        <select asp-for="ClassName" asp-items="Html.GetEnumSelectList<ClassName>()"></select>
+        <br />
+        <br />
+
+        <label asp-for="Instructor">Instructor</label>
+        <input asp-for="Instructor" />
+        <br />
+        <br />
+
+        <label asp-for="StartingDate">Start</label>
+        <input asp-for="StartingDate" />
+        <br />
+        <br />
+
+        <label asp-for="EndDate">End</label>
+        <input asp-for="EndDate" />
+        <br />
+        <br />
+
+        <button type="submit">Create Course</button>
+
+    </form>
+</body>

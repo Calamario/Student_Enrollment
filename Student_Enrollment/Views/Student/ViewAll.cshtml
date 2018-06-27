@@ -1,0 +1,27 @@
+﻿@model List<Student_Enrollment.Models.Student>
+
+<head>
+    <link href="~/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h2>Students</h2>
+
+    <form asp-controller="Student" asp-action="ViewAll">
+        <p>
+            Search: <input type="text" name="SearchString" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+
+    @foreach (var x in Model)
+    {
+        <h3>@x.Name</h3>
+        <p>Taking @x.Course.ClassName with @x.Course.Instructor</p>
+        <p>Passing: @x.Passing</p>
+        <p>Gets @x.HoursOfSleep hour(s) of sleep</p>
+        <p><a asp-controller="Student" asp-action="Update" asp-route-id="@x.ID">Edit</a></p>
+        <p><a asp-controller="Student" asp-action="Delete" asp-route-id="@x.ID">Delete</a></p>
+        <hr />
+    }
+</body>

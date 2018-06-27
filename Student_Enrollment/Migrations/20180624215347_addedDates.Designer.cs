@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Student_Enrollment.Data;
 
 namespace Student_Enrollment.Migrations
 {
     [DbContext(typeof(EnrollmentDbContext))]
-    partial class EnrollmentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180624215347_addedDates")]
+    partial class addedDates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace Student_Enrollment.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CourseId");
+                    b.Property<int>("CourseID");
 
                     b.Property<int>("HoursOfSleep");
 
@@ -56,16 +58,16 @@ namespace Student_Enrollment.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CourseId");
+                    b.HasIndex("CourseID");
 
                     b.ToTable("Student");
                 });
 
             modelBuilder.Entity("Student_Enrollment.Models.Student", b =>
                 {
-                    b.HasOne("Student_Enrollment.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
+                    b.HasOne("Student_Enrollment.Models.Course")
+                        .WithMany("Cohort")
+                        .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
