@@ -60,7 +60,7 @@ namespace Student_Enrollment.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewAll");
             }
         }
 

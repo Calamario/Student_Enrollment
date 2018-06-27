@@ -1,5 +1,9 @@
 ﻿@model List<Student_Enrollment.Models.Student>
 
+<head>
+    <link href="~/StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+
 <body>
     <h2>Students</h2>
 
@@ -19,6 +23,5 @@
         <p><a asp-controller="Student" asp-action="Update" asp-route-id="@x.ID">Edit</a></p>
         <p><a asp-controller="Student" asp-action="Delete" asp-route-id="@x.ID">Delete</a></p>
         <hr />
-
     }
 </body>
