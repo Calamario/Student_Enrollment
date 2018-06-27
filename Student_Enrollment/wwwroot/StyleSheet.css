@@ -1,4 +1,22 @@
 ﻿body {
     background-color:cadetblue;
+    text-align:center;
+}
 
+h1, h2 {
+    margin-top: 10%;
+}
+
+p > a {
+    display:inline-block;
+    border: 1px solid #777777;
+    background-color:darkseagreen;
+    color: white;
+    font: bold 11px 'Trebuchet MS';
+    padding: 10px;
+}
+
+p > a:hover {
+    background-color:aqua ;
+    color:black;
 }

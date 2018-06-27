@@ -36,7 +36,7 @@ namespace Enrollment_Test
         }
 
         [Fact]
-        public async void CourseControllerCanUpdateAsync()
+        public void CourseControllerCanUpdate()
         {
             DbContextOptions<EnrollmentDbContext> options =
                 new DbContextOptionsBuilder<EnrollmentDbContext>()
@@ -59,5 +59,70 @@ namespace Enrollment_Test
                 Assert.Equal(1, results.Count());
             }
         }
+
+        [Fact]
+        public void CourseControllerCanEdit()
+        {
+            DbContextOptions<EnrollmentDbContext> options =
+                new DbContextOptionsBuilder<EnrollmentDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .Options;
+
+            using (EnrollmentDbContext context = new EnrollmentDbContext(options))
+            {
+                Course course = new Course();
+                course.ClassName = ClassName.Python;
+                course.Instructor = "Miss Snake";
+                course.StartingDate = new DateTime(2012, 12, 12);
+                course.EndDate = new DateTime(2012, 12, 25);
+
+                CourseController cc = new CourseController(context);
+                var x = cc.Create(course);
+
+                Course newCourse = new Course();
+                course.ClassName = ClassName.Python;
+                course.Instructor = "Mister Boa";
+                course.StartingDate = new DateTime(2012, 12, 12);
+                course.EndDate = new DateTime(2012, 12, 25);
+
+                var y = cc.Update(newCourse);
+
+                var results = context.Course.Where(a => a.Instructor == "Miss Snake");
+
+                Assert.Equal(0, results.Count());
+
+                results = context.Course.Where(a => a.Instructor == "Mister Boa");
+                Assert.Equal(1, results.Count());
+            }
+        }
+
+        [Fact]
+        public void CourseControllerCanDeleteWhenNoStudents()
+        {
+            DbContextOptions<EnrollmentDbContext> options =
+                new DbContextOptionsBuilder<EnrollmentDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .Options;
+
+            using (EnrollmentDbContext context = new EnrollmentDbContext(options))
+            {
+                Course course = new Course();
+                course.ClassName = ClassName.Python;
+                course.Instructor = "Miss Snake";
+                course.StartingDate = new DateTime(2012, 12, 12);
+                course.EndDate = new DateTime(2012, 12, 25);
+
+                CourseController cc = new CourseController(context);
+                var x = cc.Create(course);
+
+                var y = cc.Delete(1);
+
+                var results = context.Course.Where(a => a.Instructor == "Miss Snake");
+
+                Assert.Equal(0, results.Count());
+            }
+        }
+
+        
     }
 }
