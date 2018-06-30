@@ -107,6 +107,7 @@ namespace Enrollment_Test
             using (EnrollmentDbContext context = new EnrollmentDbContext(options))
             {
                 Course course = new Course();
+                course.ID = 1;
                 course.ClassName = ClassName.Python;
                 course.Instructor = "Miss Snake";
                 course.StartingDate = new DateTime(2012, 12, 12);
@@ -123,6 +124,18 @@ namespace Enrollment_Test
             }
         }
 
-        
+        [Fact]
+        public void CourseNameGetterSetterTest()
+        {
+            Course course = new Course();
+            course.ClassName = ClassName.CSharp;
+            course.Instructor = "Kakashi Sensei";
+
+            Assert.Equal("CSharp", course.ClassName.ToString());
+
+            course.ClassName = ClassName.JavaScript;
+
+            Assert.Equal("JavaScript", course.ClassName.ToString());
+        }
     }
 }

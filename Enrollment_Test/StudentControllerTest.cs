@@ -125,5 +125,26 @@ namespace Enrollment_Test
                 Assert.False(context.Student.Where(a => a.Name == "Mario").SingleOrDefault().Passing);
             }
         }
+
+        [Fact]
+        public void StudentNameGetterSetterTest()
+        {
+            Student student = new Student();
+            student.Name = "Mario";
+            student.HoursOfSleep = 7;
+            student.Passing = true;
+
+            Assert.Equal("Mario", student.Name);
+            Assert.Equal(7, student.HoursOfSleep);
+            Assert.True(student.Passing);
+
+            student.Name = "Jeff";
+            student.HoursOfSleep = 3;
+            student.Passing = false;
+
+            Assert.Equal("Jeff", student.Name);
+            Assert.Equal(3, student.HoursOfSleep);
+            Assert.False(student.Passing);
+        }
     }
 }
