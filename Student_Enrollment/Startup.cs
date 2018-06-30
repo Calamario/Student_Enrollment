@@ -25,11 +25,14 @@ namespace Student_Enrollment
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //Add MVC 
             services.AddMvc();
 
+            //Toggle comment for local DB use
             //services.AddDbContext<EnrollmentDbContext>(options =>
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //Toggle comment for Azure Deployed Server
             services.AddDbContext<EnrollmentDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ProductionConnection")));
 
@@ -43,6 +46,7 @@ namespace Student_Enrollment
                 app.UseDeveloperExceptionPage();
             }
 
+            //Using MVC
             app.UseMvc(route =>
             {
                 route.MapRoute(
@@ -50,6 +54,7 @@ namespace Student_Enrollment
                     template: "{Controller=Home}/{action=Index}/{id?}");
             });
 
+            //Using static file for CSS
             app.UseStaticFiles();
 
             app.Run(async (context) =>
